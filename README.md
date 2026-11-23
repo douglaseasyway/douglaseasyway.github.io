@@ -15,16 +15,16 @@ Página de "link na bio" para os vídeos: cada produto indicado tem um número (
 2. Faça a mudança.
 3. Clique em **Commit changes**. O site atualiza sozinho em 1 ou 2 minutos.
 
-## Colar o código do Google (o "pixel")
+## Código do Google (Tag Manager)
 
-No `index.html`, procure por `COLE AQUI O CÓDIGO DO GOOGLE` e cole o código que o Google te deu entre as duas linhas marcadas.
+O Google Tag Manager (`GTM-KSKP7QSQ`) já está instalado no topo de todas as páginas, entre as linhas `CÓDIGO DO GOOGLE` e `FIM DO CÓDIGO DO GOOGLE`. Pixels novos (Google Ads, Google Analytics, Meta, TikTok) você adiciona dentro do Tag Manager e publica lá, sem mexer no site.
 
-Com o código instalado, o site já envia estes eventos para o Google:
+O site envia estes eventos para o Tag Manager:
 
-- `clique_afiliado`: alguém clicou em "Ver o produto" (vai junto o número e o nome do produto)
-- `busca_numero`: alguém achou um produto pelo número
+- `clique_afiliado`: alguém clicou em "Ver o produto" (vão junto `codigo`, `produto` e `link_url`)
+- `busca_numero`: alguém achou um produto pelo número (vão junto `codigo` e `produto`)
 
-Opcional: se você criar no Google Ads uma conversão para esses cliques, cole o `send_to` dela (exemplo: `AW-123456789/AbCdEfGhIjK`) em `CONVERSAO_CLIQUE`, no fim do `index.html`.
+Para usar um deles, crie no Tag Manager um acionador do tipo **Evento personalizado** com o nome do evento (por exemplo, `clique_afiliado`) e ligue esse acionador à tag de conversão.
 
 ## Adicionar um produto
 

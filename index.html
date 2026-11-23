@@ -2,8 +2,13 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<!-- ============ COLE AQUI O CÓDIGO DO GOOGLE (Google tag / gtag.js) ============ -->
-
+<!-- ============ CÓDIGO DO GOOGLE (Tag Manager GTM-KSKP7QSQ) ============ -->
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-KSKP7QSQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>
 <!-- ============ FIM DO CÓDIGO DO GOOGLE ============ -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Indicações dos vídeos | @seuperfil</title>
@@ -108,10 +113,6 @@
 
 <script>
 (function () {
-  // Opcional: se criar no Google Ads uma conversão para cliques nos produtos,
-  // cole aqui o "send_to" dela. Exemplo: 'AW-123456789/AbCdEfGhIjK'
-  var CONVERSAO_CLIQUE = '';
-
   var form = document.getElementById('achar');
   var campo = document.getElementById('numero');
   var aviso = document.getElementById('aviso');
@@ -121,6 +122,19 @@
   function nomeDo(item) {
     var h3 = item.querySelector('h3');
     return h3 ? h3.textContent.trim() : '';
+  }
+
+  // Manda um evento para o Google. Com o Tag Manager, ele chega como
+  // "Evento personalizado" com o mesmo nome, para usar nos acionadores.
+  var temTagManager = !!document.querySelector('script[src*="googletagmanager.com/gtm.js"]');
+  function enviar(evento, dados) {
+    if (!temTagManager && typeof gtag === 'function') {
+      gtag('event', evento, dados);
+      return;
+    }
+    dados.event = evento;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(dados);
   }
 
   form.addEventListener('submit', function (e) {
@@ -154,22 +168,19 @@
     var link = achado.querySelector('a.botao');
     (link || achado).focus({ preventScroll: true });
 
-    if (typeof gtag === 'function') {
-      gtag('event', 'busca_numero', { codigo: achado.getAttribute('data-codigo') });
-    }
+    enviar('busca_numero', { codigo: achado.getAttribute('data-codigo'), produto: nomeDo(achado) });
   });
 
-  // Conta cada clique em "Ver o produto" (só funciona depois de colar o código do Google)
+  // Conta cada clique em "Ver o produto"
   document.addEventListener('click', function (e) {
     var link = e.target.closest ? e.target.closest('a.botao') : null;
-    if (!link || typeof gtag !== 'function') return;
-    var item = link.closest('.item');
-    gtag('event', 'clique_afiliado', {
-      codigo: item ? item.getAttribute('data-codigo') : '',
-      produto: item ? nomeDo(item) : '',
+    var item = link ? link.closest('.item') : null;
+    if (!item) return;
+    enviar('clique_afiliado', {
+      codigo: item.getAttribute('data-codigo'),
+      produto: nomeDo(item),
       link_url: link.href
     });
-    if (CONVERSAO_CLIQUE) gtag('event', 'conversion', { send_to: CONVERSAO_CLIQUE });
   });
 
   document.getElementById('ano').textContent = new Date().getFullYear();
