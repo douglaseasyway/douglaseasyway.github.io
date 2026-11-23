@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<!-- ============ COLE AQUI O CÓDIGO DO GOOGLE (Google tag / gtag.js) ============ -->
+
+<!-- ============ FIM DO CÓDIGO DO GOOGLE ============ -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indicações dos vídeos | @seuperfil</title>
+<meta name="description" content="Os produtos que aparecem nos vídeos de @seuperfil, cada um com o seu número e o link para comprar.">
+<meta name="theme-color" content="#1F3DFF">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Viu num vídeo? Tá aqui.">
+<meta property="og:description" content="Os produtos que aparecem nos vídeos de @seuperfil, cada um com o seu número.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F3DFF'/%3E%3Crect x='11' y='23' width='42' height='18' rx='4' fill='%23fff' transform='rotate(-7 32 32)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<header class="topo">
+  <div class="envoltorio">
+    <div class="barra">
+      <a class="perfil" href="./">@seuperfil</a>
+      <a href="#canais">Onde eu posto</a>
+    </div>
+
+    <h1 class="manchete">
+      <span class="adesivo" style="--giro:-2.5deg; --atraso:.15s">Viu num vídeo?</span>
+      <span class="adesivo" style="--giro:1.5deg; --atraso:.35s">Tá aqui.</span>
+    </h1>
+
+    <p class="subtitulo">Tudo o que eu mostro nos vídeos fica nesta página. Cada produto tem um número, o mesmo que aparece na tela.</p>
+
+    <form class="achar" id="achar" role="search">
+      <label for="numero">Qual é o número do vídeo?</label>
+      <div class="achar__linha">
+        <input id="numero" name="numero" type="text" inputmode="numeric" autocomplete="off" placeholder="Ex.: 7" aria-describedby="aviso">
+        <button type="submit">Achar</button>
+      </div>
+      <p class="aviso" id="aviso" aria-live="polite"></p>
+    </form>
+  </div>
+</header>
+
+<main>
+  <section class="lista" aria-labelledby="titulo-lista">
+    <div class="envoltorio">
+      <h2 id="titulo-lista">Tudo o que já apareceu nos vídeos</h2>
+
+      <!-- ===== PRODUTO: para adicionar outro, copie este bloco inteiro e troque o número ===== -->
+      <article class="item" id="n01" data-codigo="01" tabindex="-1">
+        <p class="codigo"><span>nº</span>01</p>
+        <div>
+          <h3>Produto do vídeo 1</h3>
+          <p>Troque este texto por uma frase curta dizendo por que você indica este produto.</p>
+          <!-- Quando tiver o link, troque a linha de baixo por:
+               <a class="botao" href="SEU-LINK-DE-AFILIADO" rel="sponsored nofollow">Ver o produto</a> -->
+          <span class="botao botao--espera">Link em breve</span>
+        </div>
+      </article>
+      <!-- ===== FIM DO PRODUTO ===== -->
+
+      <article class="item" id="n02" data-codigo="02" tabindex="-1">
+        <p class="codigo"><span>nº</span>02</p>
+        <div>
+          <h3>Produto do vídeo 2</h3>
+          <p>Uma frase com o principal motivo para comprar: o problema que ele resolve.</p>
+          <span class="botao botao--espera">Link em breve</span>
+        </div>
+      </article>
+
+      <article class="item" id="n03" data-codigo="03" tabindex="-1">
+        <p class="codigo"><span>nº</span>03</p>
+        <div>
+          <h3>Produto do vídeo 3</h3>
+          <p>Conte o que você achou de verdade. Quem assiste confia em quem testou.</p>
+          <span class="botao botao--espera">Link em breve</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="canais" id="canais" aria-labelledby="titulo-canais">
+    <div class="envoltorio">
+      <h2 id="titulo-canais">Onde eu posto vídeos</h2>
+      <!-- Troque cada href="#" pelo link do seu perfil -->
+      <ul>
+        <li><a href="#">YouTube <span>@seuperfil</span></a></li>
+        <li><a href="#">TikTok <span>@seuperfil</span></a></li>
+        <li><a href="#">Instagram <span>@seuperfil</span></a></li>
+        <li><a href="#">Kwai <span>@seuperfil</span></a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="envoltorio">
+    <p>Alguns links desta página são de afiliado. Se você comprar por eles, eu recebo uma comissão e o preço para você continua o mesmo.</p>
+    <p>Este site usa ferramentas do Google para contar visitas e cliques. Saiba mais na <a href="privacidade.html">política de privacidade</a>.</p>
+    <p>© <span id="ano">2026</span> @seuperfil</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Opcional: se criar no Google Ads uma conversão para cliques nos produtos,
+  // cole aqui o "send_to" dela. Exemplo: 'AW-123456789/AbCdEfGhIjK'
+  var CONVERSAO_CLIQUE = '';
+
+  var form = document.getElementById('achar');
+  var campo = document.getElementById('numero');
+  var aviso = document.getElementById('aviso');
+  var itens = Array.prototype.slice.call(document.querySelectorAll('.item'));
+  var semMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function nomeDo(item) {
+    var h3 = item.querySelector('h3');
+    return h3 ? h3.textContent.trim() : '';
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var busca = campo.value.trim();
+    if (!busca) {
+      aviso.textContent = 'Digite o número que apareceu no vídeo.';
+      campo.focus();
+      return;
+    }
+
+    var ehNumero = /^\D{0,3}\d+$/.test(busca);
+    var numero = parseInt(busca.replace(/\D/g, ''), 10);
+    var achado = itens.filter(function (item) {
+      if (ehNumero) return parseInt(item.getAttribute('data-codigo'), 10) === numero;
+      return item.textContent.toLowerCase().indexOf(busca.toLowerCase()) !== -1;
+    })[0];
+
+    if (!achado) {
+      aviso.textContent = ehNumero
+        ? 'Ainda não tem o nº ' + numero + ' aqui. Confira o número no vídeo ou veja a lista abaixo.'
+        : 'Nenhum produto com "' + busca + '". Tente pelo número que aparece no vídeo.';
+      return;
+    }
+
+    aviso.textContent = 'Achei: nº ' + achado.getAttribute('data-codigo') + ', ' + nomeDo(achado) + '.';
+    itens.forEach(function (item) { item.classList.remove('achado'); });
+    void achado.offsetWidth; // reinicia o destaque se buscar o mesmo de novo
+    achado.classList.add('achado');
+    achado.scrollIntoView({ behavior: semMovimento ? 'auto' : 'smooth', block: 'center' });
+    var link = achado.querySelector('a.botao');
+    (link || achado).focus({ preventScroll: true });
+
+    if (typeof gtag === 'function') {
+      gtag('event', 'busca_numero', { codigo: achado.getAttribute('data-codigo') });
+    }
+  });
+
+  // Conta cada clique em "Ver o produto" (só funciona depois de colar o código do Google)
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest ? e.target.closest('a.botao') : null;
+    if (!link || typeof gtag !== 'function') return;
+    var item = link.closest('.item');
+    gtag('event', 'clique_afiliado', {
+      codigo: item ? item.getAttribute('data-codigo') : '',
+      produto: item ? nomeDo(item) : '',
+      link_url: link.href
+    });
+    if (CONVERSAO_CLIQUE) gtag('event', 'conversion', { send_to: CONVERSAO_CLIQUE });
+  });
+
+  document.getElementById('ano').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>

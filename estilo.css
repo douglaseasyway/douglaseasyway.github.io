@@ -1,0 +1,211 @@
+/* =========================================================
+   Cores, fontes e medidas do site.
+   Para mudar a cor principal, troque --tela (e o theme-color no <head>).
+   ========================================================= */
+:root {
+  --tela: #1F3DFF;     /* azul principal */
+  --tela-funda: #142BC2;
+  --papel: #FFFFFF;
+  --tinta: #000000;
+  --marca: #FFE500;    /* amarelo dos números e destaques */
+  --apoio: #4A4F66;    /* texto secundário */
+  --linha: #D8DCEB;    /* divisórias */
+  --coluna: 36rem;
+  --fonte: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--fonte);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  color: var(--tinta);
+  background: var(--papel);
+}
+
+a { color: inherit; text-underline-offset: .18em; }
+
+:focus-visible { outline: 3px solid var(--tela); outline-offset: 3px; }
+.topo :focus-visible, .rodape :focus-visible { outline-color: var(--marca); }
+
+.envoltorio { max-width: var(--coluna); margin: 0 auto; padding: 0 1.25rem; }
+
+/* ---------- Topo azul ---------- */
+.topo { background: var(--tela); color: var(--papel); padding: .5rem 0 2.25rem; }
+
+.barra { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.barra a { display: inline-flex; align-items: center; min-height: 3rem; font-weight: 700; }
+.perfil { font-stretch: 112%; text-decoration: none; }
+
+.manchete {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .2em;
+  margin: 1.5rem 0 1.5rem;
+  font-size: clamp(1.75rem, 9vw, 3.5rem);
+  font-weight: 800;
+  font-stretch: 112%;
+  line-height: 1.1;
+  letter-spacing: -.01em;
+}
+.manchete--menor { font-size: clamp(1.5rem, 6.6vw, 2.4rem); }
+
+/* As "legendas" coladas por cima do vídeo */
+.adesivo {
+  display: inline-block;
+  padding: .06em .3em .12em;
+  border-radius: .14em;
+  background: var(--papel);
+  color: var(--tinta);
+  transform: rotate(var(--giro, 0deg));
+  animation: cola .5s cubic-bezier(.2, 1.5, .4, 1) var(--atraso, 0s) both;
+}
+.adesivo + .adesivo { margin-left: 1.1em; }
+
+@keyframes cola {
+  from { opacity: 0; transform: scale(.5) rotate(calc(var(--giro, 0deg) - 10deg)); }
+  to   { opacity: 1; transform: scale(1) rotate(var(--giro, 0deg)); }
+}
+
+.subtitulo { max-width: 32ch; margin: 0 0 2rem; }
+
+/* ---------- Busca pelo número ---------- */
+.achar label { display: block; margin-bottom: .5rem; font-weight: 700; }
+.achar__linha { display: flex; gap: .5rem; }
+.achar input {
+  flex: 1;
+  min-width: 0;
+  height: 3.25rem;
+  padding: 0 1rem;
+  border: 0;
+  border-radius: .5rem;
+  background: var(--papel);
+  color: var(--tinta);
+  font: inherit;
+  font-size: 1.375rem;
+  font-weight: 700;
+}
+.achar input::placeholder { color: #8A8FA3; font-weight: 400; }
+.achar button {
+  height: 3.25rem;
+  padding: 0 1.4rem;
+  border: 0;
+  border-radius: .5rem;
+  background: var(--marca);
+  color: var(--tinta);
+  font: inherit;
+  font-weight: 800;
+  font-stretch: 112%;
+  cursor: pointer;
+}
+.achar button:hover { background: var(--papel); }
+.aviso { min-height: 1.5em; margin: .6rem 0 0; font-size: .9375rem; }
+
+/* ---------- Lista de produtos ---------- */
+.lista { padding: 2.5rem 0 1rem; }
+
+.lista h2, .canais h2 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-stretch: 112%;
+  line-height: 1.2;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: 0 1rem;
+  margin: 0 -.75rem;
+  padding: 1.5rem .75rem;
+  border-top: 1px solid var(--linha);
+  scroll-margin: 5rem;
+}
+.item:last-of-type { border-bottom: 1px solid var(--linha); }
+.item:focus { outline: none; }
+
+.codigo {
+  margin: 0;
+  color: var(--tela);
+  font-size: 3rem;
+  font-weight: 800;
+  font-stretch: 62%;
+  line-height: .85;
+  font-variant-numeric: tabular-nums;
+}
+.codigo span {
+  display: block;
+  color: var(--apoio);
+  font-size: .875rem;
+  font-weight: 700;
+  font-stretch: 100%;
+  line-height: 1.6;
+}
+
+.item h3 { margin: 0 0 .35rem; font-size: 1.3125rem; font-weight: 700; line-height: 1.25; }
+.item h3 + p { max-width: 60ch; margin: 0 0 1rem; color: var(--apoio); }
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0 1.5rem;
+  border-radius: 999px;
+  background: var(--tinta);
+  color: var(--papel);
+  font-weight: 700;
+  text-decoration: none;
+}
+a.botao:hover { background: var(--tela); }
+.botao--espera { border: 2px dashed var(--linha); background: transparent; color: var(--apoio); }
+
+/* Produto encontrado pela busca */
+.item.achado { animation: achado 2s ease-out both; box-shadow: inset 5px 0 0 var(--marca); }
+@keyframes achado { from { background: var(--marca); } to { background: transparent; } }
+
+/* ---------- Canais ---------- */
+.canais { padding: 2rem 0 3rem; }
+.canais ul { margin: 0 -.75rem; padding: 0; list-style: none; }
+.canais a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  min-height: 3.5rem;
+  padding: 0 .75rem;
+  border-top: 1px solid var(--linha);
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.canais li:last-child a { border-bottom: 1px solid var(--linha); }
+.canais a span { color: var(--apoio); font-size: 1rem; font-weight: 400; }
+.canais a:hover { color: var(--tela); }
+
+/* ---------- Rodapé ---------- */
+.rodape { background: var(--tela); color: var(--papel); padding: 2rem 0 2.5rem; font-size: .875rem; }
+.rodape p { max-width: 60ch; margin: 0 0 .75rem; }
+
+/* ---------- Páginas de texto (privacidade) ---------- */
+.texto { padding: 2.5rem 0 3rem; }
+.texto h2 { margin: 2.25rem 0 .5rem; font-size: 1.3125rem; font-weight: 800; font-stretch: 112%; line-height: 1.25; }
+.texto p, .texto li { max-width: 66ch; }
+.texto p { margin: 0 0 1rem; }
+.texto ul { margin: 0 0 1rem; padding-left: 1.25rem; }
+.texto li { margin-bottom: .35rem; }
+.data { color: var(--apoio); font-size: .9375rem; }
+
+.botao--amarelo { background: var(--marca); color: var(--tinta); }
+a.botao--amarelo:hover { background: var(--papel); }
+
+@media (prefers-reduced-motion: reduce) {
+  .adesivo { animation: none; }
+  .item.achado { animation: none; background: #FFF7B3; }
+  html { scroll-behavior: auto; }
+}
